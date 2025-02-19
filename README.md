@@ -1,3 +1,5 @@
+Reproduction repository for [Issue withastro/astro #13269](https://github.com/withastro/astro/issues/13269)
+
 ## Important
 
 The `main` branch contains last WORKING version. To see the bug, bump Astro version to `5.2.0` (or latest `5.3.0`). Alternatively, switch the git branch to `bug`.
