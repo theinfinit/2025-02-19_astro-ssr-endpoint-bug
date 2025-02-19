@@ -1,6 +1,6 @@
 ## Important
 
-This branch contains last WORKING version. To see the bug, bump Astro version to `5.2.0` (or latest `5.3.0`). Alternatively, switch the git branch to `bug`.
+The `main` branch contains last WORKING version. To see the bug, bump Astro version to `5.2.0` (or latest `5.3.0`). Alternatively, switch the git branch to `bug`.
 
 ## How to reproduce
 
@@ -15,17 +15,12 @@ pnpm d
 
 # Call endpoint from another terminal 
 curl -X OPTIONS http://localhost:3001/api/auth/test-options/ -i
-
-# Terminal logs should respond to the request...
-🚀 ~ onRequest ~ isPreflight: true
-🚀 ~ request: OPTIONS
-16:20:32 [200] OPTIONS /api/auth/test-options/ 2ms
 ```
 
-Expected terminal output:
+Expected terminal output for Astro v5.1.9
 
 ```sh
-# example for Astro v5.1.9
+# Expected message is received
 → ~  curl -X OPTIONS http://localhost:3001/api/auth/test-options/ -i
 HTTP/1.1 200 OK
 access-control-allow-credentials: true
@@ -40,6 +35,15 @@ Transfer-Encoding: chunked
 
 {"message":"This was an OPTIONS method!"}
 → ~
+```
+
+Expected Astro Dev Terminal output:
+
+```sh
+# Astro Dev Terminal should respond to the request...
+🚀 ~ onRequest ~ isPreflight: true
+🚀 ~ request: OPTIONS
+16:20:32 [200] OPTIONS /api/auth/test-options/ 2ms
 ```
 
 ### Bug
@@ -65,15 +69,11 @@ pnpm d
 
 # Call endpoint from another terminal 
 curl -X OPTIONS http://localhost:3001/api/auth/test-options/ -i
-
-# Terminal logs will not respond to the request...
-❌🤷‍♂️
 ```
 
-Terminal output:
+Terminal output for Astro v5.2.0
 
 ```sh
-# example for Astro v5.2.0
 # We haven't received response message.
 → ~  curl -X OPTIONS http://localhost:3001/api/auth/test-options/ -i
 HTTP/1.1 204 No Content
@@ -85,4 +85,11 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 
 → ~
+```
+
+Astro Dev Terminal output:
+
+```sh
+# Astro Dev Terminal will not respond to the request...
+❌🤷‍♂️
 ```
